@@ -17,6 +17,16 @@ Rails.application.configure do
   config.public_file_server.headers = {
     'Cache-Control' => "public, max-age=#{1.hour.to_i}"
   }
+  config.action_mailer.default_url_options = { host: "http://localhost:3000" }
+  ActionMailer::Base.smtp_settings = {
+      :user_name => 'apikey',
+      domain: 'localhost:3000',
+      :password => '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',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

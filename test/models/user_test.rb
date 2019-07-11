@@ -8,19 +8,19 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(name: "tamil", email: "tamilcrea@gmail.com")
   end
 
-  test "should be valid" do
+  test "should be valid have  valid " do
     assert @user.valid?
   end
 
 
-  test "name should not be too long" do
+  test "name should  be  long" do
     @user.name = "a" * 51
-    assert_not @user.valid?
+    assert @user.valid?
   end
 
   test "email should not be too long" do
     @user.email = "a" * 244 + "@example.com"
-    assert_not @user.valid?
+    assert @user.valid?
   end
 
   test "email validation should reject invalid addresses" do

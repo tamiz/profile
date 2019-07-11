@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+
+
   def index
     @users = User.all
   end
@@ -11,7 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
-      redirect_to @user
+      UserNotifierMailer.user_notifier_mailer(@user).deliver
+      redirect_to(@user, :notice => 'user created')
     else
       render 'new'
     end
@@ -21,8 +24,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def login
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :confirmation)
   end
+
 end

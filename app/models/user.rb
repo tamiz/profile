@@ -1,10 +1,8 @@
 class User < ApplicationRecord
-  scope :user, ->  { where(name: true) }
-  scope  :user, -> { name('çreated_at desc') }
-  validates :confirmation, presence: true
 
-  def self.user
-    order('name_at desc').last
-  end
+
+    validates :name, presence: true, length: {maximum: 150 }
+
+    validates :password, presence: true,length: {maximum: 50}
 
 end
