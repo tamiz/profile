@@ -8,6 +8,12 @@ gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'figaro'
+gem 'faker', '~> 1.6', '>= 1.6.6'
+
+gem 'carrierwave',             '1.2.2'
+gem 'mini_magick',             '4.7.0'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
@@ -15,6 +21,7 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'fog', '1.42'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

@@ -1,16 +1,9 @@
-<table class="table">
-<thead>
-<tr>
-  <th>Username</th>
-  <th>emailid</th>
-</tr>
-</thead>
+<ul class="users">
+
+  <%= will_paginate %>
 <% @users.each do |user| %>
-  <tbody>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-  </tr>
-  </tbody>
+   <%= render @user %>
 <% end %>
-</table>
+</ul>
+
+<%= will_paginate %>
