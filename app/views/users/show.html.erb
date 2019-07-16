@@ -1,32 +1,31 @@
-<h1>
-  welcome to the sample app
-  check ur email buddy.we have sent the mail through sendgrid :) :) :)
 
-</h1>
 <p>
   <strong> User: </strong>
   <%= @user.name %>
 </p>
-
-<% provide(:title, @user.name) %>
 <div class=" "row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravata_for @user %>
+        <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
     </section>
   </aside>
-
-  <div class="col-md-8">
-    <% if @user.microposts.any? %>
-     <h3> Microposts (<%= @user.micropost.count %>)</h3>
-      <ol class="microposts">
-         <%= render @microposts %>
-      </ol>
-      <% will_paginate @microposts %>
-      <% end %>
-  </div>
 </div>
+<% if @user.microposts.any? %>
+  <h3>Microposts (<%= @user.microposts.count %>)</h3>
+  <ol class="microposts">
+    <% @user.microposts.each do |micropost| %>
+    <li>
+      <span class="content">
+      <%= micropost.content %>
+      </span>
+      <span class="timestamp">
+        posted <%= time_ago_in_words(micropost.created_at) %> ago.
+      </span>
+    </li>
+    <% end %>
+  </ol>
+<% end %>
 

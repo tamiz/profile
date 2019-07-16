@@ -1,0 +1,1 @@
+undefined method `content' for #<User:0x00007fcbb714e350> Did you mean? concern

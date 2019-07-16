@@ -1,10 +1,7 @@
 class UsersController < ApplicationController
-      before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-      before_action :correct_user,   only: [:edit, :update]
-      before_action :admin_user,     only: :destroy
-
+      before_action :logged_in_user, only: [:edit, :update]
   def index
-    @users = User.paginate.(page: params[:page])
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -12,24 +9,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.save
-      UserNotifierMailer.user_notifier_mailer(@user).deliver
-      redirect_to(@user, :notice => 'user created')
-    else
-      render 'new'
-    end
+    @user = User.create!(user_params)
+    # if @user.save
+    #   # render js: "alert('successfully Registered');"
+    redirect_to @user
+    # else
+    #   render 'new'
+    # end
   end
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
-
+  #  @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def update
-    if @user.uodate_attributed(user_params)
-      flash[:sucess] = "profile updated"
+    if @user.update_attribute(user_params)
+      flash[:success] = "profile updated"
       redirect_to @user
     else
       render 'edit'
@@ -38,17 +34,11 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :confirmation)
   end
 
-   def logged_in_user
-     unless logged_in?
-       store_location
-       flash[:danger] = "pleade log in"
-       redirect_to login_url
-     end
-   end
 
   def correct_user
     @user = User.find(params[:id])

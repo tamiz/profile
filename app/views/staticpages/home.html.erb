@@ -1,8 +1,12 @@
-<% if logged_in %>
+<% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
       <section class="user_info">
-        <%= render 'shared/user_info %>
+        <%= link_to gravatar_for(current_user, size: 50), current_user %>
+        <h1><%= current_user.name %></h1>
+        <span><%= pluralize(current_user.microposts.count, "micropost") %></span><br>
+        <span><%= link_to "view my posts", current_user %></i></span>
+
       </section>
     </aside>
   </div>
